@@ -1,0 +1,16 @@
+[credential]
+	helper = !/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java -Ddebug=false -Djava.net.useSystemProxies=true -jar /usr/local/Cellar/git-credential-manager/2.0.3/libexec/git-credential-manager-2.0.3.jar
+[user]
+	name = Bjorn Hansen
+	email = bh@hoylu.com
+[alias]
+	co = checkout
+	cb = checkout -b 
+	lol=log --oneline --graph --decorate
+	l=log --pretty=\"%h%Creset %Cgreen[%ar] %Cred%<(20,trunc)%an %Creset%s\"
+	branch-name=rev-parse --abbrev-ref HEAD
+	unstage=reset HEAD
+	diffc=diff --cached
+	publish=!git push --set-upstream origin $(git branch-name)
+	cleanup-branches = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+	tidy = !echo cleaning up the cruft... && git fetch -p && git pull && git cleanup-branches
