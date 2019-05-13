@@ -13,4 +13,5 @@
 	diffc=diff --cached
 	publish=!git push --set-upstream origin $(git branch-name)
 	cleanup-branches = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
-	tidy = !echo cleaning up the cruft... && git fetch -p && git pull && git cleanup-branches
+	tidy = !echo cleaning up the cruft... && git fetch -p && git pull && git sweep
+	sweep = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse master) | egrep -v \"(^\\*|^\\s*(master|development)$)\" \\\n| xargs git branch -d; }; f"
