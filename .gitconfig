@@ -8,10 +8,18 @@
 	cb = checkout -b 
 	lol=log --oneline --graph --decorate
 	l=log --pretty=\"%h%Creset %Cgreen[%ar] %Cred%<(20,trunc)%an %Creset%s\"
+	lg=log --all --decorate --oneline --graph
 	branch-name=rev-parse --abbrev-ref HEAD
 	unstage=reset HEAD
 	diffc=diff --cached
 	publish=!git push --set-upstream origin $(git branch-name)
 	cleanup-branches = !git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
-	tidy = !echo cleaning up the cruft... && git fetch -p && git pull && git sweep
-	sweep = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse master) | egrep -v \"(^\\*|^\\s*(master|development)$)\" \\\n| xargs git branch -d; }; f"
+	tidy = !echo cleaning up the cruft... && git fetch -p && git pull && git sweepmain
+	tidymaster = !echo cleaning up the cruft... && git fetch -p && git pull && git sweepmaster
+	sweepdevelop = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse develop) | egrep -v \"(^\\*|^\\s*(master|develop)$)\" \\\n| xargs git branch -d; }; f"
+	sweepmaster = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse master) | egrep -v \"(^\\*|^\\s*(master|develop)$)\" \\\n| xargs git branch -d; }; f"
+	sweepmain = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse main) | egrep -v \"(^\\*|^\\s*(main|development)$)\" \\\n| xargs git branch -d; }; f"
+[core]
+	autocrlf = input
+[pager]
+	branch = false
