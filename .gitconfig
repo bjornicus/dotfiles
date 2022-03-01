@@ -2,7 +2,7 @@
 	helper = !/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/bin/java -Ddebug=false -Djava.net.useSystemProxies=true -jar /usr/local/Cellar/git-credential-manager/2.0.3/libexec/git-credential-manager-2.0.3.jar
 [user]
 	name = Bjorn Hansen
-	email = holomorph@gmail.com
+	email = bjorn.hansen@accelbyte.net
 [alias]
 	co = checkout
 	cb = checkout -b 
