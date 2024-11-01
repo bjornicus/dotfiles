@@ -19,6 +19,7 @@
 	sweepdevelop = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse develop) | egrep -v \"(^\\*|^\\s*(master|develop)$)\" \\\n| xargs git branch -d; }; f"
 	sweepmaster = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse master) | egrep -v \"(^\\*|^\\s*(master|develop)$)\" \\\n| xargs git branch -d; }; f"
 	sweepmain = "!f(){ git branch --merged $([[ $1 != \"-f\" ]] \\\n&& git rev-parse main) | egrep -v \"(^\\*|^\\s*(main|development)$)\" \\\n| xargs git branch -d; }; f"
+	cleanremotegone = "!f(){ git branch -vv | grep ': gone]'| grep -v '^*' | awk '{ print $1; }' | xargs -r git branch -D; }; f"
 [core]
 	autocrlf = input
 [pager]
